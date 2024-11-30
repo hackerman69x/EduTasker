@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Tasks</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <h1>EduTasker</h1>
+    <nav>
+        <button onclick="location.href='index.html'" class="tab-btn">Home</button>
+        <button onclick="location.href='tasks.html'" class="tab-btn">Manage Tasks</button>
+        <button onclick="location.href='notes.html'" class="tab-btn">Manage Notes</button>
+        <button onclick="location.href='calendar.html'" class="tab-btn">View Calendar</button>
+        <button onclick="location.href='php/logout.php'" class="tab-btn logout-btn">Log Out</button>
+    </nav>
+    <hr>
+    <h2>Manage Your Tasks</h2>
+    <form id="taskForm">
+        <label for="title">Task Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="due_date">Due Date:</label><br>
+        <input type="date" id="due_date" name="due_date"><br><br>
+
+        <label for="priority">Priority:</label><br>
+        <select id="priority" name="priority">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select><br><br>
+
+        <button type="submit">Add Task</button>
+    </form>
+    <h3>Your Tasks</h3>
+    <div id="tasksList"></div>
+</body>
+</html>

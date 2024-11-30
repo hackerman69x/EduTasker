@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Notes</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/notes.js" defer></script>
+</head>
+<body>
+    <h1>EduTasker</h1>
+    <nav>
+        <button onclick="location.href='index.html'" class="tab-btn">Home</button>
+        <button onclick="location.href='tasks.html'" class="tab-btn">Manage Tasks</button>
+        <button onclick="location.href='notes.html'" class="tab-btn">Manage Notes</button>
+        <button onclick="location.href='calendar.html'" class="tab-btn">View Calendar</button>
+        <button onclick="location.href='php/logout.php'" class="tab-btn logout-btn">Log Out</button>
+    </nav>
+    <hr>
+    <h2>Manage Notes</h2>
+    <form id="noteForm">
+        <label for="title">Note Title:</label><br>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="5" required></textarea><br><br>
+
+        <button type="submit">Add Note</button>
+    </form>
+    <h3>Your Notes</h3>
+    <div id="notesList"></div>
+</body>
+</html>
