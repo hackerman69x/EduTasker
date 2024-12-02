@@ -1,7 +1,12 @@
 body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #fbfaff;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 /*----------LEFT HEADER----------*/
@@ -19,13 +24,11 @@ body {
   color: white;
 }
 
-.left-header a.logo {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
+.left-header a.logo img {
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
+  object-fit: contain;
 }
 
 /*----------LH NAVIGATION BAR----------*/
@@ -155,10 +158,54 @@ body {
 }
 
 /*----------SETTINGS----------*/
-.content {
-  margin-left: 240px; /* Space for left header */
-  margin-top: 80px; /* Space for top header */
-  padding: 20px;
+
+.settings-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
 }
+
+h2 {
+  text-align: center;
+  color: #041537;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.save-button {
+  background-color: #041537;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #00244b;
+}
+
 
 

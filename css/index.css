@@ -19,13 +19,11 @@ body {
   color: white;
 }
 
-.left-header a.logo {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
+.left-header a.logo img {
+  max-width: 200px;
+  max-height: 200px;
+  margin-bottom: 10px;
+  object-fit: contain;
 }
 
 /*----------LH NAVIGATION BAR----------*/
@@ -154,11 +152,107 @@ body {
   font-size: 0.9rem;
 }
 
-/*----------CONTENT----------*/
-.content {
-  margin-left: 240px; /* Space for left header */
-  margin-top: 80px; /* Space for top header */
+
+
+
+
+
+
+
+
+
+/*----------CONTAINERS----------*/
+.content-wrapper {
+  margin-left: 220px;
+  margin-top: 80px;
+  padding: 90px;
+  display: flex; /* Flexbox for horizontal alignment */
+  justify-content: space-between; /* Space between tasks and notes */
+  gap: 20px; /* Adds space between containers */
+}
+
+/*----------TASK LIST CONTAINER----------*/
+.task-list {
+  width: 45%; /* Adjust to balance width between task and note lists */
+  background-color: #fbfaff;
   padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: 600px; /* Ensures task list is taller */
+  max-height: 100vh; /* Keeps it manageable within the viewport */
+  overflow-y: auto; /* Scroll if tasks overflow */
+}
+
+/*----------NOTES LIST CONTAINER----------*/
+.note-list {
+  width: 45%; /* Same width as task list for symmetry */
+  background-color: #fbfaff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-height: 600px; /* Ensures note list is taller */
+  max-height: 100vh; /* Keeps it manageable within the viewport */
+  overflow-y: auto; /* Scroll if notes overflow */
+}
+
+.task-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.note-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/*----------LISTS ITEMS----------*/
+#noTasksMessage {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#noNotesMessage {
+  color: #777;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#taskDisplay{
+  list-style: none;
+  padding: 0;
+}
+
+#noteDisplay {
+  list-style: none;
+  padding: 0;
+}
+
+.task-item
+.note-item {
+  background-color: #f9f9f9;
+  margin: 15px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.task-item h3
+.note-item h3 {
+  margin-top: 0;
+  color: #041537;
+}
+
+.task-item p
+.note-item p {
+  color: #333;
+}
+
+.task-item strong
+.note-item strong {
+  color: #00244b;
 }
 
 
