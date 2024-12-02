@@ -4,37 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Tasks</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/app.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tasks.css">
+    <script type="text/javascript" src="js/main.js"></script>
 </head>
+
 <body>
-    <h1>EduTasker</h1>
-    <nav>
-        <button onclick="location.href='index.html'" class="tab-btn">Home</button>
-        <button onclick="location.href='tasks.html'" class="tab-btn">Manage Tasks</button>
-        <button onclick="location.href='notes.html'" class="tab-btn">Manage Notes</button>
-        <button onclick="location.href='calendar.html'" class="tab-btn">View Calendar</button>
-        <button onclick="location.href='php/logout.php'" class="tab-btn logout-btn">Log Out</button>
-    </nav>
-    <hr>
-    <h2>Manage Your Tasks</h2>
-    <form id="taskForm">
-        <label for="title">Task Title:</label><br>
-        <input type="text" id="title" name="title" required><br><br>
 
-        <label for="due_date">Due Date:</label><br>
-        <input type="date" id="due_date" name="due_date"><br><br>
+    <!---------- Left Header ---------->
 
-        <label for="priority">Priority:</label><br>
-        <select id="priority" name="priority">
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-        </select><br><br>
+    <header class="left-header">
+        <a class="logo">
+            <img src="pic/edutasker-logo.png">
+        </a>
 
-        <button type="submit">Add Task</button>
-    </form>
-    <h3>Your Tasks</h3>
-    <div id="tasksList"></div>
+        <ul class="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="tasks.html">Tasks</a></li>
+            <li><a href="notes.html">Notes</a></li>
+            <li><a href="calendar.html">Calendar</a></li>
+        </ul>
+    </header>
+
+    <!---------- Top Header ---------->
+
+    <header class="top-header">
+        <div class="welcome-message">
+            <h1>Tasks</h1>
+        </div>
+        <div class="user-menu">
+            <div class="user-dropdown">
+                <span class="username">
+                  <?php
+                  session_start();
+                  echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest';
+                  ?>
+                  <i class='bx bx-chevron-down'></i>
+                </span>
+                <ul class="dropdown-menu">
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="logout.php">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!---------- Tasks ---------->
+    <div class="content-wrapper">
+        <div class="task-container">
+            <div class="task-form">
+                <h2>Add Task</h2>
+                
+                <!-- Task Form -->
+                <form id="taskForm">
+                    <label for="taskTitle">Task Title:</label>
+                    <input type="text" id="taskTitle" required>
+    
+                    <label for="taskDescription">Description:</label>
+                    <textarea id="taskDescription" rows="4" required></textarea>
+    
+                    <label for="dueDate">Due Date:</label>
+                    <input type="date" id="dueDate" required>
+    
+                    <label for="priority">Priority Level:</label>
+                    <select id="priority" required>
+                        <option value="Low">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">Low</option>
+                    </select>
+    
+                    <button type="submit">Add Task</button>
+                </form>
+            </div>
+    
+            <div class="task-list">
+                <h2>Your Tasks</h2>
+                <ul id="taskDisplay">
+                    <!-- Tasks will appear here -->
+                    <li id="noTasksMessage">No tasks found. Add some tasks.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!---------- Footer ---------->
+    <footer class="top-footer">
+        <div class="footer-message">
+            <h1>&copy; 2024 EduTasker. All rights reserved.</h1>
+        </div>
+        <div class="footer-names">
+            <a>Gingoyon</a>
+            <a>Primicias</a>
+            <a>Ramos</a>
+        </div>
+    </footer>
+    
 </body>
 </html>
