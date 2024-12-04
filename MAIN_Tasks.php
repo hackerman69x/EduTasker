@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +24,10 @@
         </a>
 
         <ul class="navbar">
-            <li><a href="MAIN_Index.html">Home</a></li>
-            <li><a href="MAIN_Tasks.html">Tasks</a></li>
-            <li><a href="MAIN_Notes.html">Notes</a></li>
-            <li><a href="MAIN_Calendar.html">Calendar</a></li>
+            <li><a href="MAIN_Index.php">Home</a></li>
+            <li><a href="MAIN_Tasks.php">Tasks</a></li>
+            <li><a href="MAIN_Notes.php">Notes</a></li>
+            <li><a href="MAIN_Calendar.php">Calendar</a></li>
         </ul>
     </header>
 
@@ -31,20 +35,20 @@
 
     <header class="top-header">
         <div class="welcome-message">
-            <h1>Tasks</h1>
+            <h1>Welcome to EduTasker!</h1>
         </div>
         <div class="user-menu">
             <div class="user-dropdown">
                 <span class="username">
-                  <?php
-                  session_start();
-                  echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Guest';
-                  ?>
-                  <i class='bx bx-chevron-down'></i>
+                    
+                    <?php
+                    echo isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Guest';
+                    ?>
+                    
+                    <i class='bx bx-chevron-down'></i>
                 </span>
                 <ul class="dropdown-menu">
-                    <li><a href="MAIN_Settings.html">Settings</a></li>
-                    <li><a href="MAIN_Logout.php">Logout</a></li>
+                    <li><a href="LR_Logout.php">Logout</a></li>
                 </ul>
             </div>
         </div>
