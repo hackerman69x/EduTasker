@@ -106,35 +106,35 @@ $result = $stmt->get_result();
             <div class="task-list">
                 <h2>Your Tasks</h2>
                 <ul id="taskDisplay">
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($task = $result->fetch_assoc()): ?>
-            <li class="task-item">
-                <h3><?php echo htmlspecialchars($task['task_title']); ?></h3>
-                <p><strong>Description:</strong> <?php echo htmlspecialchars($task['task_description']); ?></p>
-                <p><strong>Due Date:</strong> <?php echo htmlspecialchars($task['due_date']); ?></p>
-                <p><strong>Priority:</strong> 
-                    <span class="priority <?php echo strtolower($task['priority']); ?>">
-                        <?php echo htmlspecialchars($task['priority']); ?>
-                    </span>
-                </p>
-                <!-- Update form -->
-                <form method="GET" action="MAIN_Tasks_Update.php" style="display:inline;">
-                    <input type="hidden" name="task_id" value="<?php echo $task['task_id']; ?>">
-                    <button type="submit">Update</button>
-                </form>
-                <!-- Delete form -->
-                <form method="POST" action="MAIN_Tasks_Delete.php" style="display:inline;">
-                    <input type="hidden" name="task_id" value="<?php echo $task['task_id']; ?>">
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
-                </form>
-            </li>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <li id="noTasksMessage">No tasks found. Add some tasks.</li>
-    <?php endif; ?>
-</ul>
-
-
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($task = $result->fetch_assoc()): ?>
+                            <li class="task-item">
+                                <h3><?php echo htmlspecialchars($task['task_title']); ?></h3>
+                                <p><strong>Description:</strong> <?php echo htmlspecialchars($task['task_description']); ?></p>
+                                <p><strong>Due Date:</strong> <?php echo htmlspecialchars($task['due_date']); ?></p>
+                                <p><strong>Priority:</strong> 
+                                <span class="priority <?php echo strtolower($task['priority']); ?>">
+                                <?php echo htmlspecialchars($task['priority']); ?> </span> </p>
+                                
+                                <!-- Update form -->
+                                <form method="GET" action="MAIN_Tasks_Update.php" style="display:inline;">
+                                <input type="hidden" name="task_id" value="<?php echo $task['task_id']; ?>">
+                                <button type="submit">Update</button>
+                            </form>
+                            
+                            <!-- Delete form -->
+                            <form method="POST" action="MAIN_Tasks_Delete.php" style="display:inline;">
+                            <input type="hidden" name="task_id" value="<?php echo $task['task_id']; ?>">
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this task?')">Delete</button>
+                        </form>
+                        
+                    </li>
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                        <li id="noTasksMessage">No tasks found. Add some tasks.</li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
