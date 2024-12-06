@@ -98,31 +98,30 @@ $result = $stmt->get_result();
             <div class="note-list">
                 <h2>Your Notes</h2>
                 <ul id="noteDisplay">
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($note = $result->fetch_assoc()): ?>
-            <li class="note-item">
-                <h3><?php echo htmlspecialchars($note['note_title']); ?>:</h3>
-                <p><strong>Description:</strong> <?php echo htmlspecialchars($note['note_description']); ?></p>
-                <!-- Update form -->
-                <form method="GET" action="MAIN_Notes_Update.php" style="display:inline;">
-                    <input type="hidden" name="note_id" value="<?php echo $note['note_id']; ?>">
-                    <button type="submit">Update</button>
-                </form>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($note = $result->fetch_assoc()): ?>
+                            <li class="note-item">
+                                <h3><?php echo htmlspecialchars($note['note_title']); ?>:</h3>
+                                <p><strong>Description:</strong> <?php echo htmlspecialchars($note['note_description']); ?></p>
 
-                <!-- Delete form -->
-                <form method="POST" action="MAIN_Notes_Delete.php" style="display:inline;">
-                    <input type="hidden" name="note_id" value="<?php echo $note['note_id']; ?>">
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this note?')">Delete</button>
-                </form>
-            </li>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <li id="noNotesMessage">No notes found. Add some notes.</li>
-    <?php endif; ?>
-</ul>
+                                <!-- Update form -->
+                                <form method="GET" action="MAIN_Notes_Update.php" style="display:inline;">
+                                <input type="hidden" name="note_id" value="<?php echo $note['note_id']; ?>">
+                                <button type="submit">Update</button>
+                            </form>
 
+                            <!-- Delete form -->
+                            <form method="POST" action="MAIN_Notes_Delete.php" style="display:inline;">
+                            <input type="hidden" name="note_id" value="<?php echo $note['note_id']; ?>">
+                            <button type="submit" onclick="return confirm('Are you sure you want to delete this note?')">Delete</button>
+                        </form>
 
-
+                    </li>
+                    <?php endwhile; ?>
+                    <?php else: ?>
+                        <li id="noNotesMessage">No notes found. Add some notes.</li>
+                        <?php endif; ?>
+                </ul>
             </div>
         </div>
     </div>
