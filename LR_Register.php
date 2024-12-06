@@ -4,7 +4,6 @@ session_start();
 require 'database_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data
     $name = mysqli_real_escape_string($conn, $_POST['name']); // mysqli_real_escape_string is used for extra protection
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
