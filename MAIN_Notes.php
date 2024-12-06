@@ -1,5 +1,29 @@
 <?php
 session_start();
+require 'database_connection.php';
+
+// new note
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['noteTitle']) && isset($_POST['noteDescription'])) {
+    $noteTitle = htmlspecialchars(trim($_POST['noteTitle']));
+    $noteDescription = htmlspecialchars(trim($_POST['noteDescription']));
+    $user_id = $_SESSION['user_id'];
+
+    if (!empty($noteTitle) && !empty($noteDescription)) {
+        $query = "INSERT INTO notes (note_title, note_description, user_id) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('ssi', $noteTitle, $noteDescription, $user_id);
+        $stmt->execute();
+    } else {
+        echo "Please fill out both the title and description.";
+    }
+}
+
+// fetch the notes
+$query = "SELECT * FROM notes WHERE user_id = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param('i', $_SESSION['user_id']);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
@@ -60,14 +84,12 @@ session_start();
         <div class="note-container">
             <div class="note-form">
                 <h2>Add Notes</h2>
-                
-                <!-- Notes -->
-                <form id="noteForm">
+                <form method="POST">
                     <label for="noteTitle">Note Title:</label>
-                    <input type="text" id="noteTitle" required>
+                    <input type="text" id="noteTitle" name="noteTitle" required>
     
                     <label for="noteDescription">Description:</label>
-                    <textarea id="noteDescription" rows="12" required></textarea>
+                    <textarea id="noteDescription" name="noteDescription" rows="12" required></textarea>
     
                     <button type="submit">Add Notes</button>
                 </form>
@@ -76,9 +98,31 @@ session_start();
             <div class="note-list">
                 <h2>Your Notes</h2>
                 <ul id="noteDisplay">
-                    <!-- Notes will appear here -->
-                    <li id="noNotesMessage">No notes found. Add some notes.</li>
-                </ul>
+    <?php if ($result->num_rows > 0): ?>
+        <?php while ($note = $result->fetch_assoc()): ?>
+            <li class="note-item">
+                <h3><?php echo htmlspecialchars($note['note_title']); ?>:</h3>
+                <p><strong>Description:</strong> <?php echo htmlspecialchars($note['note_description']); ?></p>
+                <!-- Update form -->
+                <form method="GET" action="MAIN_Notes_Update.php" style="display:inline;">
+                    <input type="hidden" name="note_id" value="<?php echo $note['note_id']; ?>">
+                    <button type="submit">Update</button>
+                </form>
+
+                <!-- Delete form -->
+                <form method="POST" action="MAIN_Notes_Delete.php" style="display:inline;">
+                    <input type="hidden" name="note_id" value="<?php echo $note['note_id']; ?>">
+                    <button type="submit" onclick="return confirm('Are you sure you want to delete this note?')">Delete</button>
+                </form>
+            </li>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <li id="noNotesMessage">No notes found. Add some notes.</li>
+    <?php endif; ?>
+</ul>
+
+
+
             </div>
         </div>
     </div>
