@@ -23,7 +23,7 @@ document.getElementById('addTaskButton').addEventListener('click', function () {
     const taskDisplay = document.getElementById('taskDisplay');
     const noTasksMessage = document.getElementById('noTasksMessage');
     
-    // Add the task (simplified example)
+    // add task
     const newTask = document.createElement('li');
     newTask.classList.add('task-item');
     newTask.innerHTML = `
@@ -33,13 +33,13 @@ document.getElementById('addTaskButton').addEventListener('click', function () {
     `;
     taskDisplay.appendChild(newTask);
   
-    // Hide "No tasks" message if tasks exist
+    // hide no task msg
     if (taskDisplay.children.length > 1) { // More than just the "noTasksMessage" element
       noTasksMessage.style.display = 'none';
     }
   });
   
-  // Ensure the "No tasks" message shows if there are no tasks
+  // ensure no task msg shows
   if (document.querySelectorAll('#taskDisplay .task-item').length === 0) {
     document.getElementById('noTasksMessage').style.display = 'block';
   }
@@ -53,7 +53,7 @@ document.getElementById('addNoteButton').addEventListener('click', function () {
     const noteDisplay = document.getElementById('noteDisplay');
     const noNotesMessage = document.getElementById('noNotesMessage');
 
-    // Add the note (simplified example)
+    // add note
     const newNote = document.createElement('li');
     newNote.classList.add('note-item');
     newNote.innerHTML = `
@@ -62,13 +62,13 @@ document.getElementById('addNoteButton').addEventListener('click', function () {
     `;
     noteDisplay.appendChild(newNote);
 
-    // Hide "No notes" message if notes exist
+    // no notes msg
     if (noteDisplay.children.length > 1) { // More than just the "noNotesMessage" element
         noNotesMessage.style.display = 'none';
     }
 });
 
-// Ensure the "No notes" message shows if there are no notes
+// ensure no task msg shows
 if (document.querySelectorAll('#noteDisplay .note-item').length === 0) {
     document.getElementById('noNotesMessage').style.display = 'block';
 }
@@ -77,4 +77,11 @@ if (document.querySelectorAll('#noteDisplay .note-item').length === 0) {
     // ==========================================================================
     // ==========================================================================
 
-    
+// fullcalendar script
+document.addEventListener('DOMContentLoaded', function() {
+  var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+    initialView: 'dayGridMonth',
+    events: 'events.php'
+  });
+  calendar.render();
+});
